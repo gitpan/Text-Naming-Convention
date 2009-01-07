@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 57;    # last test to print
+use Test::More tests => 61;    # last test to print
 
 use Text::Naming::Convention qw/naming renaming default_convention
   default_keep_uppers/;
@@ -130,3 +130,14 @@ is( renaming('FOO123Bar234'),
 is( renaming('UpdateCFs'),
     'update_cfs',
     'renaming UpdateCFs with default convention will get update_cfs' );
+
+# if without argument, renaming $_
+$_ = 'SirGombrich';
+is( renaming, 'sir_gombrich', 'renaming $_ if without arguments' );
+$_ = [];
+is( renaming, undef, 'return undef if without arguments and $_ is ref' );
+$_ = '';
+is( renaming, '', 'return empty string if without arguments and $_ is empty' );
+undef $_;
+is( renaming, undef, 'return undef if without arguments and $_ is undef' );
+

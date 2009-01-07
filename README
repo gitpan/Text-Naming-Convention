@@ -1,4 +1,4 @@
-Text-Naming-Convention version 0.0.5
+Text-Naming-Convention version 0.0.6
 
 
 INSTALLATION
@@ -18,7 +18,7 @@ None.
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2008, sunnavy
+Copyright 2008-2009 Best Practical Solutions.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

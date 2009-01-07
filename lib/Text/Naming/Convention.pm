@@ -7,7 +7,7 @@ use Carp;
 use base qw/Exporter/;
 our @EXPORT_OK = qw/naming renaming default_convention default_keep_uppers/;
 
-our $VERSION = '0.0.5';
+our $VERSION = '0.0.6';
 
 my @_valid_conventions = ( '_', '-', 'UpperCamelCase', 'lowerCamelCase' );
 my $_default_convention = '_';
@@ -122,12 +122,25 @@ return the renamed one.
 
 if the convention is the same as the name, just return the name.
 
+if without arguments and $_ is defined and it's not a reference, renaming $_
+
 
 =cut
 
 sub renaming {
-    my $name        = shift;
-    my $option      = shift;
+
+    my ($name, $option);
+    if ( scalar @_ ) {
+        $name        = shift;
+        $option      = shift;
+    }
+    elsif ( defined $_ && ! ref $_ ) {
+        $name = $_;
+    }
+    else {
+        return
+    }
+
     my $convention  = $_default_convention;
 
     if ( $option && ref $option eq 'HASH' ) {
@@ -201,7 +214,7 @@ Text::Naming::Convention - Naming or Renaming( for identifiers, mostly )
 
 =head1 VERSION
 
-This document describes Text::Naming::Convention version 0.0.5
+This document describes Text::Naming::Convention version 0.0.6
 
 
 =head1 SYNOPSIS
@@ -241,7 +254,7 @@ sunnavy  C<< <sunnavy@bestpractical.com> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright 2008 Best Practical Solutions.
+Copyright 2008-2009 Best Practical Solutions.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
